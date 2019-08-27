@@ -12,7 +12,7 @@ function VertexModel(label, schema = {}) {
 
 function findVertex(props){
 
-  let findVertexGremlinString = `g.V()`;
+  let findVertexGremlinString = `g.V().hasLabel('${props.label}')`;
   const propsObj = Object.assign(props, {});
 
     for (key in propsObj){
@@ -46,8 +46,8 @@ const eric = User.create({'eric': 'Eric', 'age' : 30})
  * The values should correlate to the key/value pairs of a particular node. 
  * 
 */  
-VertexModel.prototype.findByProps = function findVertexByProps(props) {
-    let findVertexGremlinString = `g.V()`;
+VertexModel.prototype.findVertexByProps = function findVertexByProps(props) {
+    let findVertexGremlinString = `g.V().hasLabel('${props.label}')`;
     const propsObj = Object.assign(props, {});
         for (key in propsObj){
             findVertexGremlinString += `.has('key', key)`
